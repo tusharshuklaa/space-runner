@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space Runner</title>
+  <meta name='referrer' content='strict-origin'></meta>
+  <link rel='shortcut icon preload' as='image' href='./images/favicon.ico' type='image/x-icon' />
+  <link rel='preload' as='font' href='./fonts/BungeeOutline-Regular.ttf' type='font/ttf' crossOrigin='anonymous'></link>
+  <link rel='preload' href='./essential.css' as='style' />
+  <link rel='stylesheet' href='./essential.css' />
+  <link rel="stylesheet" href="./style.css" />
+  <script src="./script.js " defer></script>
+</head>
+
+<body>
+  <header class="header">
+    <div class="score">Score: <span id="cScore">0</span></div>
+    <h1 class="title">Space Runner</h1>
+    <div class="score topScore">Top Score: <span id="tScore">0</span></div>
+  </header>
+
+  <main>
+    <section class="gameContainer">
+      <div class="obstacle" id="obst1">
+        <div class="pipe"></div>
+        <div class="hole"></div>
+      </div>
+
+      <div class="obstacle" id="obst2">
+        <div class="pipe"></div>
+        <div class="hole"></div>
+      </div>
+
+      <div id="character"></div>
+    </section>
+
+    <section class="overlay">
+      <div class="userIntro">
+        <h2 class="greet">Ready, Steady, SWOOOSH!</h2></span></h2>
+        <h2 class="gameOverText hidden">GAME OVER!</h2>
+      </div>
+      <div class="lastscore hidden">You scored <span id="lastScore"></span> points!</div>
+      <ol id="leaderboard" class="scoreList"></ol>
+      <button class="spaceBtn btn-shiny" id="startGameBtn">Play</button>
+      <div class="settings">
+        <button class="btn" id="toggleMusic">
+          <div class="ripple ripple--dark"></div>
+          <div class="ripple ripple--light"></div>
+
+          <div class="toggle toggle--dark">
+            <img src="./images/mute.svg" />
+          </div>
+          <div class="toggle toggle--light">
+            <img src="./images/sound.svg" />
+          </div>
+        </button>
+        <p class="howToPlay">
+          Press <code>SPACEBAR</code> or click anywhere to jump.
+          Keep jumping to dodge the pipes
+          and don't hit the ground!
+        </p>
+        <button class="spaceBtn btn-mini" id="resetScores">Reset Scores</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
