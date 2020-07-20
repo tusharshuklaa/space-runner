@@ -43,24 +43,27 @@
       <div class="lastscore hidden">You scored <span id="lastScore"></span> points!</div>
       <ol id="leaderboard" class="scoreList"></ol>
       <button class="spaceBtn btn-shiny" id="startGameBtn">Play</button>
-      <div class="settings">
-        <button class="btn" id="toggleMusic">
-          <div class="ripple ripple--dark"></div>
-          <div class="ripple ripple--light"></div>
+      <div class="settingsContainer">
+        <button class="cogWheel" id="toggleSettings"></button>
+        <div class="settings">
+          <button class="btn" id="toggleMusic">
+            <div class="ripple ripple--dark"></div>
+            <div class="ripple ripple--light"></div>
 
-          <div class="toggle toggle--dark">
-            <img src="./images/mute.svg" />
-          </div>
-          <div class="toggle toggle--light">
-            <img src="./images/sound.svg" />
-          </div>
-        </button>
-        <p class="howToPlay">
-          Press <code>SPACEBAR</code> or click anywhere to jump.
-          Keep jumping to dodge the pipes
-          and don't hit the ground!
-        </p>
-        <button class="spaceBtn btn-mini" id="resetScores">Reset Scores</button>
+            <div class="toggle toggle--dark">
+              <img src="./images/mute.svg" />
+            </div>
+            <div class="toggle toggle--light">
+              <img src="./images/sound.svg" />
+            </div>
+          </button>
+          <p class="howToPlay">
+            Press <code>SPACEBAR</code> or click anywhere to jump.
+            Keep jumping to dodge the pipes
+            and don't hit the ground!
+          </p>
+          <button class="spaceBtn btn-mini" id="resetScores">Reset Scores</button>
+        </div>
       </div>
     </section>
   </main>

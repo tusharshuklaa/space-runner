@@ -93,6 +93,7 @@
   overflow: hidden;
   margin: auto;
   height: calc(100vh - 80px);
+  user-select: none;
 }
 
 .obstacle {
