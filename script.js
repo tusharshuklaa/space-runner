@@ -1,7 +1,6 @@
 "use strict";
 const pipes = document.querySelectorAll('.pipe');
 const holes = document.querySelectorAll('.hole');
-const pipeHeight = pipes[0].clientHeight;
 const obstacles = document.querySelectorAll('.obstacle');
 const character = document.getElementById('character');
 const playBtn = document.getElementById('startGameBtn');
@@ -15,6 +14,8 @@ const gameOverText = document.querySelector('.gameOverText');
 const leaderboard = document.getElementById('leaderboard');
 const musicBtn = document.getElementById('toggleMusic');
 const resetScores = document.getElementById('resetScores');
+const settingsButton = document.getElementById('toggleSettings');
+const author = document.querySelector('.authorName');
 const headerHeight = 80;
 const __LEADERBOARD_KEY__ = 'tsSRLB';
 const __MUSIC_PREF_KEY__ = 'tsSRMP';
@@ -86,9 +87,33 @@ const init = () => {
     playBtn.addEventListener('click', startGame);
     musicBtn.addEventListener('click', setMusicPreference);
     resetScores.addEventListener('click', resetLeaderBoardScores);
+    settingsButton.addEventListener('click', toggleSettings);
     window.onresize = () => {
         screenHeight = document.documentElement.clientHeight;
     };
+};
+const toggleSettings = (e) => {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    const modal = document.getElementById('settingsModal');
+    if (modal.classList.contains('lsil')) {
+        settingsButton.classList.remove('rotateR');
+        settingsButton.classList.add('rotateL');
+        modal.classList.remove('lsil');
+        modal.classList.add('bod');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('bod');
+            author.classList.remove('animatedText');
+        }, 1500);
+    }
+    else {
+        settingsButton.classList.remove('rotateL');
+        settingsButton.classList.add('rotateR');
+        author.classList.add('animatedText');
+        modal.classList.remove('hidden');
+        modal.classList.add('lsil');
+    }
 };
 const fetchMusicPreference = () => {
     const musicPref = localStorage.getItem(__MUSIC_PREF_KEY__) || 'false';
@@ -245,16 +270,17 @@ const hitDetection = (characterTop, gravity) => {
     }
 };
 const initiateGravity = () => {
+    const gravityPx = screenHeight * 0.00633;
     const gravity = setInterval(function () {
         const characterTop = getStyle(character, 'top');
         if (!isJumping) {
-            character.style.top = (characterTop + 6) + 'px';
+            character.style.top = (characterTop + gravityPx) + 'px';
         }
         hitDetection(characterTop, gravity);
     }, 10);
 };
 const storeScore = () => {
-    if (topScores.length < 10 || score > lowestScore) {
+    if ((topScores.length < 5 || (score > lowestScore && lowestScore !== 0)) && score !== 0) {
         const scoreObj = {
             ['' + Date.now()]: score
         };
@@ -284,6 +310,10 @@ const gameOver = () => {
     currentScore.innerText = '0';
     lastScore.innerText = '' + score;
     overlay.classList.remove('hidden');
+    lastScore.classList.add('highlight');
+    setTimeout(() => {
+        lastScore.classList.remove('highlight');
+    }, 1500);
     score = 0;
     pausePipes();
     playBtn.innerText = 'Play Again';
@@ -292,10 +322,11 @@ const jump = () => {
     clearInterval(jumpInterval);
     isJumping = true;
     let jumpCount = 0;
+    const jumpPx = screenHeight * 0.005274;
     jumpInterval = setInterval(function () {
         const characterTop = getStyle(character, 'top');
         if (characterTop > headerHeight && jumpCount < 15) {
-            character.style.top = (characterTop - 5) + 'px';
+            character.style.top = (characterTop - jumpPx) + 'px';
         }
         if (jumpCount > 20) {
             clearInterval(jumpInterval);
