@@ -360,7 +360,7 @@ const initiateGravity = () => {
 };
 
 const storeScore = () => {
-  if(topScores.length < 10 || (score > lowestScore && lowestScore !== 0)) {
+  if((topScores.length < 5 || (score > lowestScore && lowestScore !== 0)) && score !== 0) {
     const scoreObj: ITopScore = {
       ['' + Date.now()]: score
     };
@@ -428,21 +428,3 @@ const jump = () => {
 
 // Initialize the game!
 init();
-
-// TODO:
-/**
- * Update stars bg from here: https://codepen.io/SheWolf/pen/MMmyWa
- * Move settings in a separate invisible panel that can be viewed separately
- * Add support for touch events
- * See if triple clicking on mobile can be stopped that causes browsers to zoom the page
- * Add local ES-lint configurations
- * Add code-tour
- * Add Prettier configurations
- * Add test cases
- * Add a build process
- * Add lite-server as dev dependency and add it's configuration
- * Add GitHub actions
- * Add GITHUB contributing guidelines
- * Add issue template in Github
- * Add pull request template in Github
- */

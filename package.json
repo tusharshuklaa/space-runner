@@ -1,7 +1,7 @@
 {
   "name": "space-runner",
   "version": "1.0.1",
-  "description": "Flappy bird game made in Typescript with a local score system",
+  "description": "An endless runner game based on Flappy Bird, made in Typescript with a local score system",
   "main": "script.js",
   "scripts": {
     "dev": "lite-server"

@@ -280,7 +280,7 @@ const initiateGravity = () => {
     }, 10);
 };
 const storeScore = () => {
-    if (topScores.length < 10 || (score > lowestScore && lowestScore !== 0)) {
+    if ((topScores.length < 5 || (score > lowestScore && lowestScore !== 0)) && score !== 0) {
         const scoreObj = {
             ['' + Date.now()]: score
         };
