@@ -28,6 +28,7 @@ button {
   border: none;
   margin: 0;
   padding: 0;
+  cursor: pointer;
 }
 
 button:focus,
@@ -38,4 +39,11 @@ button:active {
 
 .hidden {
   display: none !important;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }

@@ -1,3 +1,5 @@
 {
-  "svg.preview.background": "transparent"
+  "svg.preview.background": "transparent",
+  "editor.fontSize": 18,
+  "editor.lineHeight": 30
 }

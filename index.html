@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <title>Space Runner</title>
   <meta name='referrer' content='strict-origin'></meta>
   <link rel='shortcut icon preload' as='image' href='./images/favicon.ico' type='image/x-icon' />
@@ -15,9 +15,15 @@
 
 <body>
   <header class="header">
-    <div class="score">Score: <span id="cScore">0</span></div>
+    <div class="score">
+      <span>Score: </span>
+      <span id="cScore" class="scoreNum">0</span>
+    </div>
     <h1 class="title">Space Runner</h1>
-    <div class="score topScore">Top Score: <span id="tScore">0</span></div>
+    <div class="score topScore">
+      <span>Top Score: </span>
+      <span id="tScore" class="scoreNum">0</span>
+    </div>
   </header>
 
   <main>
@@ -40,13 +46,56 @@
         <h2 class="greet">Ready, Steady, SWOOOSH!</h2></span></h2>
         <h2 class="gameOverText hidden">GAME OVER!</h2>
       </div>
-      <div class="lastscore hidden">You scored <span id="lastScore"></span> points!</div>
+      <div class="lastscore hidden">
+        <span>You scored</span>
+        <span id="lastScore"></span>
+        <span>points!</span>
+      </div>
       <ol id="leaderboard" class="scoreList"></ol>
       <button class="spaceBtn btn-shiny" id="startGameBtn">Play</button>
-      <div class="settingsContainer">
-        <button class="cogWheel" id="toggleSettings"></button>
+      <button aria-label="Settings button" class="cogWheel animated" id="toggleSettings"></button>
+      <section class="settingsModal animated hidden" id="settingsModal">
+        <div class="info">
+          <div class="gameInstructions">
+            <h2>HOW TO PLAY?</h2>
+            <p class="howToPlay">
+              Press <code>SPACEBAR</code> or <code>CLICK</code> anywhere to jump.
+              Keep jumping to dodge the COSMIC BEAMS
+              and don't hit the ground!
+            </p>
+          </div>
+
+          <div class="authorInfo">
+            <div class="author">
+              <span>Created By</span>
+              <div class="authorName">
+                <span>T</span>
+                <span>U</span>
+                <span>S</span>
+                <span>H</span>
+                <span>A</span>
+                <span>R</span>
+                <span>&nbsp;</span>
+                <span>S</span>
+                <span>H</span>
+                <span>U</span>
+                <span>K</span>
+                <span>L</span>
+                <span>A</span>
+              </div>
+            </div>
+
+            <div class="contactInfo">
+              <a target="_blank" rel="nofollow" href="https://twitter.com/_Tushar_Shukla_" class="ciItem twitter">twitter</a>
+              <a target="_blank" rel="nofollow" href="https://github.com/tusharshuklaa" class="ciItem github">github</a>
+              <a target="_blank" rel="nofollow" href="https://codepen.io/tusharshukla" class="ciItem codepen">codepen</a>
+              <a target="_blank" rel="nofollow" href="https://stackoverflow.com/users/2996624/tushar-shukla" class="ciItem stackoverflow">stackoverflow</a>
+            </div>
+          </div>
+        </div>
+
         <div class="settings">
-          <button class="btn" id="toggleMusic">
+          <button class="btn" id="toggleMusic" aria-label="Music Toggle Button">
             <div class="ripple ripple--dark"></div>
             <div class="ripple ripple--light"></div>
 
@@ -57,14 +106,9 @@
               <img src="./images/sound.svg" />
             </div>
           </button>
-          <p class="howToPlay">
-            Press <code>SPACEBAR</code> or click anywhere to jump.
-            Keep jumping to dodge the pipes
-            and don't hit the ground!
-          </p>
-          <button class="spaceBtn btn-mini" id="resetScores">Reset Scores</button>
+          <button type="button" class="spaceBtn btn-mini" id="resetScores">Reset Scores</button>
         </div>
-      </div>
+      </section>
     </section>
   </main>
 </body>

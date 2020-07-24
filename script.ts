@@ -14,7 +14,6 @@ type StyleValue = string | number;
 
 const pipes = document.querySelectorAll('.pipe');
 const holes = document.querySelectorAll('.hole');
-const pipeHeight = pipes[0].clientHeight;
 const obstacles: NodeListOf<HTMLElement> = document.querySelectorAll('.obstacle');
 const character = document.getElementById('character')!;
 const playBtn = document.getElementById('startGameBtn')!;
@@ -28,6 +27,8 @@ const gameOverText = document.querySelector('.gameOverText')!;
 const leaderboard = document.getElementById('leaderboard')!;
 const musicBtn = document.getElementById('toggleMusic')!;
 const resetScores = document.getElementById('resetScores')!;
+const settingsButton = document.getElementById('toggleSettings')!;
+const author = document.querySelector('.authorName')!;
 const headerHeight = 80;
 const __LEADERBOARD_KEY__ = 'tsSRLB';
 const __MUSIC_PREF_KEY__ = 'tsSRMP';
@@ -121,10 +122,38 @@ const init = () => {
   // Reset scores listener
   resetScores.addEventListener('click', resetLeaderBoardScores);
 
+  // Settings button event listener
+  settingsButton.addEventListener('click', toggleSettings);
+
   // Update window height on browser resize
   window.onresize = () => {
     screenHeight = document.documentElement.clientHeight;
   };
+};
+
+const toggleSettings = (e: MouseEvent) => {
+  e.preventDefault();
+  e.stopImmediatePropagation();
+
+  const modal = document.getElementById('settingsModal')!;
+
+  if(modal.classList.contains('lsil')) {
+    settingsButton.classList.remove('rotateR');
+    settingsButton.classList.add('rotateL');
+    modal.classList.remove('lsil');
+    modal.classList.add('bod');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      modal.classList.remove('bod');
+      author.classList.remove('animatedText');
+    }, 1500);
+  } else {
+    settingsButton.classList.remove('rotateL');
+    settingsButton.classList.add('rotateR');
+    author.classList.add('animatedText');
+    modal.classList.remove('hidden');
+    modal.classList.add('lsil');
+  }
 };
 
 const fetchMusicPreference = () => {
@@ -317,12 +346,13 @@ const hitDetection = (characterTop: number, gravity: number) => {
 };
 
 const initiateGravity = () => {
+  const gravityPx = screenHeight * 0.00633;
   const gravity = setInterval(function() {
     const characterTop = getStyle(character, 'top') as number;
 
     // Free-fall character if not jumping
     if(!isJumping) {
-      character.style.top = (characterTop + 6) + 'px';
+      character.style.top = (characterTop + gravityPx) + 'px';
     }
 
     hitDetection(characterTop, gravity);
@@ -367,6 +397,10 @@ const gameOver = () => {
   currentScore.innerText = '0';
   lastScore.innerText = '' + score;
   overlay.classList.remove('hidden');
+  lastScore.classList.add('highlight');
+  setTimeout(() => {
+    lastScore.classList.remove('highlight');
+  }, 1500);
   score = 0;
   pausePipes();
   playBtn.innerText = 'Play Again';
@@ -376,10 +410,11 @@ const jump = () => {
   clearInterval(jumpInterval);
   isJumping = true;
   let jumpCount = 0;
+  const jumpPx = screenHeight * 0.005274;
   jumpInterval = setInterval(function() {
     const characterTop = getStyle(character, 'top') as number;
     if(characterTop > headerHeight && jumpCount < 15) {
-      character.style.top = (characterTop - 5) + 'px';
+      character.style.top = (characterTop - jumpPx) + 'px';
     }
 
     if(jumpCount > 20) {
@@ -396,6 +431,7 @@ init();
 
 // TODO:
 /**
+ * Update stars bg from here: https://codepen.io/SheWolf/pen/MMmyWa
  * Move settings in a separate invisible panel that can be viewed separately
  * Add support for touch events
  * See if triple clicking on mobile can be stopped that causes browsers to zoom the page

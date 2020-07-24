@@ -1,52 +1,68 @@
-.header {
-  height: 80px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: transparent;
-  padding: 0 1rem;
-  color: #fff;
-  box-shadow: 0px -0.5rem 0.8rem 0px #fff;
+/* #region Animations */
+/* @keyframes standOut {
+  0% {
+    text-shadow: 0px 0px 0.01rem;
+    transform: scale(2.5);
+  }
+
+  100% {
+    text-shadow: 0px 0px 0.1rem rgb(0, 238, 255);
+    transform: scale(1);
+  }
+} */
+
+@keyframes standOut {
+  from {
+    transform: translateY(0);
+    color: darkslateblue;
+  }
+  to {
+    transform: translateY(-1.5rem);
+  }
 }
 
-.title {
-  margin: 0;
-  font-size: 3rem;
-  font-family: "Bungee Outline", cursive;
-  letter-spacing: 0.5vw;
-  animation: shrink 6s linear;
-  color: #00fec3;
-  position: relative;
+@keyframes lightSpeedInLeft {
+  0% {
+    -webkit-transform: translate3d(-100%, 0, 0) skewX(30deg);
+    transform: translate3d(-100%, 0, 0) skewX(30deg);
+    opacity: 0;
+  }
+
+  60% {
+    -webkit-transform: skewX(-20deg);
+    transform: skewX(-20deg);
+    opacity: 1;
+  }
+
+  80% {
+    -webkit-transform: skewX(5deg);
+    transform: skewX(5deg);
+  }
+
+  to {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
 }
 
-.title::before,
-.title::after {
-  content: "";
-  display: inline-block;
-  height: 0;
-  width: 30vw;
-  border-bottom: 0.5rem solid;
-  position: absolute;
-  bottom: -4px;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-delay: 6s;
-  animation-direction: normal;
-  animation-fill-mode: forwards;
-  animation-play-state: running;
-}
+@keyframes bounceOutDown {
+  20% {
+    -webkit-transform: translate3d(0, 10px, 0) scaleY(0.985);
+    transform: translate3d(0, 10px, 0) scaleY(0.985);
+  }
 
-.title::before {
-  left: -70vw;
-  right: auto;
-  animation-name: mergeLeftLine;
-}
+  40%,
+  45% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0) scaleY(0.9);
+    transform: translate3d(0, -20px, 0) scaleY(0.9);
+  }
 
-.title::after {
-  left: auto;
-  right: -70vw;
-  animation-name: mergeRightLine;
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 2000px, 0) scaleY(3);
+    transform: translate3d(0, 2000px, 0) scaleY(3);
+  }
 }
 
 @keyframes mergeLeftLine {
@@ -79,13 +95,188 @@
 
 @keyframes shrink {
   0% {
-    font-size: 1rem;
+    font-size: 2.5vmin;
     letter-spacing: 3vw;
   }
 
   100% {
-    font-size: 3rem;
+    font-size: 6.5vmin;
     letter-spacing: 0.5vw;
+  }
+}
+
+@keyframes runningPipes {
+  0% {
+    transform: translateX(100vw);
+  }
+
+  100% {
+    transform: translateX(-5vw);
+  }
+}
+
+@keyframes changeColor1 {
+  80% {
+    filter: hue-rotate(0deg);
+  }
+  80.01% {
+    filter: hue-rotate(135deg);
+  }
+  100% {
+    filter: hue-rotate(135deg);
+  }
+}
+
+@keyframes changeColor2 {
+  80% {
+    filter: hue-rotate(135deg);
+  }
+  80.01% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(0deg);
+  }
+}
+
+@keyframes changeBorderStyle {
+  0% {
+    border-style: dotted;
+  }
+
+  50% {
+    border-style: dashed;
+  }
+
+  100% {
+    border-style: solid;
+    border-color: #0a946f;
+  }
+}
+
+@keyframes zoomInside {
+  0% {
+    transform: scale(7);
+  }
+
+  75% {
+    transform: scale(0.3);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes rotateRight {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes rotateLeft {
+  0% {
+    transform: rotate(360deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+/* #endregion */
+
+.lsil {
+  animation-name: lightSpeedInLeft;
+}
+
+.bod {
+  animation-name: bounceOutDown;
+}
+
+.header {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  padding: 0 1rem;
+  color: #fff;
+  box-shadow: 0px -0.5rem 0.8rem 0px #fff;
+  overflow: hidden;
+}
+
+.title {
+  margin: 0;
+  font-size: 6.5vmin;
+  font-family: "Bungee Outline", cursive;
+  letter-spacing: 0.5vmin;
+  animation: shrink 6s linear;
+  color: #00fec3;
+  position: relative;
+  text-align: center;
+}
+
+.title::before,
+.title::after {
+  content: "";
+  display: inline-block;
+  height: 0;
+  width: 30vmin;
+  border-bottom: 0.5vmin solid;
+  position: absolute;
+  bottom: -0.5vh;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-delay: 6s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+.title::before {
+  left: -70vw;
+  right: auto;
+  animation-name: mergeLeftLine;
+}
+
+.title::after {
+  left: auto;
+  right: -70vw;
+  animation-name: mergeRightLine;
+}
+
+@media (max-width: 767px) {
+  .title {
+    font-size: 9vmin;
+    line-height: 0.9;
+    animation: none;
+  }
+
+  .title::before,
+  .title::after {
+    animation-delay: 1s;
+  }
+
+  .title::before {
+    margin-left: 10vw;
+  }
+
+  .title::after {
+    margin-right: 10vw;
   }
 }
 
@@ -134,16 +325,6 @@
   );
 }
 
-@keyframes runningPipes {
-  0% {
-    transform: translateX(100vw);
-  }
-
-  100% {
-    transform: translateX(-5vw);
-  }
-}
-
 .hole {
   width: 100%;
   height: 25%;
@@ -155,8 +336,6 @@
 #character {
   width: 5vh;
   height: 5vh;
-  min-width: 30px;
-  min-height: 30px;
   position: absolute;
   top: 80px;
   will-change: top;
@@ -175,11 +354,10 @@
   align-items: center;
   flex-direction: column;
   color: #fff;
-  /* background-color: rgb(0, 0, 0, 0.3); */
 }
 
 .overlay > * {
-  margin: 1.5rem auto;
+  margin: 1.5vmin auto;
 }
 
 .score {
@@ -190,8 +368,18 @@
   padding-right: 5rem;
 }
 
-.score > span {
+.score > .scoreNum {
   text-shadow: 0px 0px 1rem #ff3824;
+}
+
+@media (max-width: 767px) {
+  .score {
+    padding-right: 0;
+  }
+
+  .score > span:first-child {
+    display: none;
+  }
 }
 
 .topScore {
@@ -203,13 +391,22 @@
   background-position-y: 100%;
 }
 
+@media (max-width: 767px) {
+  .topScore {
+    padding-left: 0;
+    background-size: 50%;
+    background-position-x: center;
+  }
+}
+
 .greet,
 .gameOverText {
-  font-size: 2.5rem;
+  font-size: 5vmin;
   font-family: "Bungee Outline", cursive;
   letter-spacing: 0.5rem;
   color: #ff3824;
   text-shadow: 0px 0px 1rem #ff3824;
+  text-align: center;
 }
 
 .scoreList {
@@ -218,21 +415,21 @@
 }
 
 .lbScore {
-  font-size: 0.8rem;
-  margin: 1rem;
+  font-size: 1.5vmin;
+  margin: 1vmin;
   color: #0ff0fc;
 }
 
 .lbScore > span {
   color: #d6ff00;
-  text-shadow: 0px 0px 1rem #ff3824;
+  text-shadow: 0px 0px 1vmin #ff3824;
 }
 
 .spaceBtn {
   display: inline-block;
-  font-size: 1.5rem;
-  margin: 0.5rem;
-  padding: 0.5rem 1rem;
+  font-size: 4vmin;
+  margin: 1.5vmin;
+  padding: 1.5vmin 2vmin;
   transition: all 0.5s;
   filter: hue-rotate(0deg);
   color: #fff;
@@ -302,9 +499,8 @@
   width: 100%;
   padding: 0.5rem;
   margin: 0;
-  position: absolute;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0);
+  flex: 0 0 auto;
 }
 
 .music {
@@ -322,7 +518,6 @@
   );
   filter: hue-rotate(0deg);
   border-radius: calc(50px / 2);
-  /* box-shadow: rgba(51, 51, 51, 0.1) 0px 32px 64px 0px; */
   overflow: hidden;
   -webkit-animation: changeColor2 0.6s ease forwards;
   animation: changeColor2 0.6s ease forwards;
@@ -358,30 +553,6 @@
   filter: hue-rotate(135deg);
   -webkit-animation: changeColor1 0.6s ease forwards;
   animation: changeColor1 0.6s ease forwards;
-}
-
-@keyframes changeColor1 {
-  80% {
-    filter: hue-rotate(0deg);
-  }
-  80.01% {
-    filter: hue-rotate(135deg);
-  }
-  100% {
-    filter: hue-rotate(135deg);
-  }
-}
-
-@keyframes changeColor2 {
-  80% {
-    filter: hue-rotate(135deg);
-  }
-  80.01% {
-    filter: hue-rotate(0deg);
-  }
-  100% {
-    filter: hue-rotate(0deg);
-  }
 }
 
 .btn.btn--checked .ripple.ripple--dark {
@@ -467,4 +638,210 @@
 
 .ripple.ripple--light {
   right: 8px;
+}
+
+.howToPlay {
+  line-height: 3rem;
+}
+
+.howToPlay > code {
+  display: inline-block;
+  border: 1px solid;
+  padding: 0 0.4rem;
+  text-transform: uppercase;
+  border-radius: 4px;
+  box-shadow: -2px 2px 0px 0px;
+  top: -3px;
+  position: relative;
+  letter-spacing: 2px;
+  line-height: 1.5rem;
+}
+
+.authorInfo {
+  text-transform: uppercase;
+}
+
+.info {
+  text-align: center;
+  padding: 4vw;
+  line-height: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.gameInstructions {
+  width: 80%;
+  margin: auto;
+}
+
+.gameInstructions h2 {
+  margin: 0;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.settingsModal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 80vw;
+  height: 80vh;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.4rem;
+  color: darkslateblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cogWheel {
+  width: 5vmin;
+  height: 5vmin;
+  background-image: url(./images/cog.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: fixed;
+  left: 1.5vmin;
+  bottom: 1.5vmin;
+  margin: 0;
+}
+
+.cogWheel.rotateL {
+  animation-name: rotateLeft;
+}
+
+.cogWheel.rotateR {
+  animation-name: rotateRight;
+}
+
+.author > span {
+  letter-spacing: 5px;
+  text-decoration: underline;
+  display: inline-block;
+  text-decoration-style: dotted;
+}
+
+.authorName {
+  font-size: 3rem;
+  margin: 1rem 0;
+  font-family: "Bungee Outline", cursive;
+  line-height: 1.8;
+  font-weight: 900;
+  text-shadow: 0px 0px 1px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.authorName.animatedText span {
+  animation: standOut 0.5s 0s linear;
+  display: inline-block;
+  animation-duration: 0.3s;
+  animation-name: standOut;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.authorName.animatedText :nth-child(13n + 0) {
+  animation-delay: -0.6s;
+  color: #640a64;
+}
+
+.authorName.animatedText :nth-child(13n + 1) {
+  animation-delay: -0.5538461538s;
+  color: #780a8c;
+}
+
+.authorName.animatedText :nth-child(13n + 2) {
+  animation-delay: -0.5076923077s;
+  color: #8c0a7d;
+}
+
+.authorName.animatedText :nth-child(13n + 3) {
+  animation-delay: -0.4615384615s;
+  color: #a00a6e;
+}
+
+.authorName.animatedText :nth-child(13n + 4) {
+  animation-delay: -0.4153846154s;
+  color: #b40a96;
+}
+
+.authorName.animatedText :nth-child(13n + 5) {
+  animation-delay: -0.3692307692s;
+  color: #c80a87;
+}
+
+.authorName.animatedText :nth-child(13n + 6) {
+  animation-delay: -0.3230769231s;
+  color: #dc0a78;
+}
+
+.authorName.animatedText :nth-child(13n + 7) {
+  animation-delay: -0.2769230769s;
+  color: #f00a69;
+}
+
+.authorName.animatedText :nth-child(13n + 8) {
+  animation-delay: -0.2307692308s;
+  color: #690a91;
+}
+
+.authorName.animatedText :nth-child(13n + 9) {
+  animation-delay: -0.1846153846s;
+  color: #7d0a82;
+}
+
+.authorName.animatedText :nth-child(13n + 10) {
+  animation-delay: -0.1384615385s;
+  color: #910a73;
+}
+
+.authorName.animatedText :nth-child(13n + 11) {
+  animation-delay: -0.0923076923s;
+  color: #a50a64;
+}
+
+.authorName.animatedText :nth-child(13n + 12) {
+  animation-delay: -0.0461538462s;
+  color: #b90a8c;
+}
+
+.contactInfo {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.ciItem {
+  text-transform: uppercase;
+  margin: 1rem;
+  border: 0.15rem dotted;
+  padding: 0.5rem 0.8rem;
+  background-color: #00ffbf;
+  animation: changeBorderStyle 1.2s ease infinite;
+  text-decoration: none;
+}
+
+.lastscore {
+  display: flex;
+  align-items: center;
+  font-size: 2.5vmin;
+}
+
+.lastscore > #lastScore {
+  color: #00cbfa;
+  font-size: 6vmin;
+  margin: 0 2vmin;
+  text-shadow: -2px 2px 1px orangered;
+}
+
+.lastscore > span.highlight {
+  animation: zoomInside 3s ease-in-out;
 }
