@@ -123,6 +123,9 @@ const init = () => {
   // Settings button event listener
   settingsButton.addEventListener("click", toggleSettings);
 
+  // Settings button event listener
+  settingsButton.addEventListener("click", toggleSettings);
+
   // Update window height on browser resize
   window.onresize = () => {
     screenHeight = document.documentElement.clientHeight;

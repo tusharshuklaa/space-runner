@@ -87,6 +87,7 @@ const init = () => {
     musicBtn.addEventListener("click", setMusicPreference);
     resetScores.addEventListener("click", resetLeaderBoardScores);
     settingsButton.addEventListener("click", toggleSettings);
+    settingsButton.addEventListener("click", toggleSettings);
     window.onresize = () => {
         screenHeight = document.documentElement.clientHeight;
     };
