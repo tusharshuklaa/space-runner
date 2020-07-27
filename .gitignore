@@ -13,3 +13,5 @@ node_modules/
 
 # Local History for Visual Studio
 .localhistory/
+
+.DS_Store

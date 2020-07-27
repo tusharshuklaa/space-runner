@@ -6,20 +6,20 @@
 
 @font-face {
   font-family: "Bungee Outline";
-  src: url("./fonts/BungeeOutline-Regular.ttf") format("truetype");
+  src: url("../assets/fonts/BungeeOutline-Regular.ttf") format("truetype");
   font-display: fallback;
 }
 
 @font-face {
   font-family: "Press Start 2P";
-  src: url("./fonts/PressStart2P-Regular.ttf") format("truetype");
+  src: url("../assets/fonts/PressStart2P-Regular.ttf") format("truetype");
   font-display: fallback;
 }
 
 body {
   font-size: 14px;
   overflow: hidden;
-  background: #000 url(./images/bg.jpg);
+  background: #000 url(../assets/images/bg.jpg);
   font-family: "Press Start 2p", monospace;
 }
 

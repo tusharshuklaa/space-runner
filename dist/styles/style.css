@@ -317,12 +317,7 @@
   width: 100%;
   height: 100%;
   background-color: transparent;
-  background-image: linear-gradient(
-    green 196px,
-    transparent 196px,
-    transparent 412px,
-    green 412px
-  );
+  background-image: linear-gradient(green 196px, transparent 196px, transparent 412px, green 412px);
 }
 
 .hole {
@@ -341,7 +336,7 @@
   will-change: top;
   position: absolute;
   left: 5vw;
-  background-image: url("./images/ufo.svg");
+  background-image: url("../assets/images/ufo.svg");
 }
 
 .overlay {
@@ -383,7 +378,7 @@
 }
 
 .topScore {
-  background-image: url("./images/flag.svg");
+  background-image: url("../assets/images/flag.svg");
   background-repeat: no-repeat;
   padding-right: 0;
   padding-left: 5rem;
@@ -399,8 +394,8 @@
   }
 }
 
-.greet,
-.gameOverText {
+#greet,
+#gameOverText {
   font-size: 5vmin;
   font-family: "Bungee Outline", cursive;
   letter-spacing: 0.5rem;
@@ -445,37 +440,17 @@
 .spaceBtn,
 .spaceBtn::before {
   background: rgba(73, 155, 234, 1);
-  background: -moz-linear-gradient(
-    45deg,
-    rgba(73, 155, 234, 1) 0%,
-    rgba(26, 188, 156, 1) 100%
-  );
+  background: -moz-linear-gradient(45deg, rgba(73, 155, 234, 1) 0%, rgba(26, 188, 156, 1) 100%);
   background: -webkit-gradient(
     left bottom,
     right top,
     color-stop(0%, rgba(73, 155, 234, 1)),
     color-stop(100%, rgba(26, 188, 156, 1))
   );
-  background: -webkit-linear-gradient(
-    45deg,
-    rgba(73, 155, 234, 1) 0%,
-    rgba(26, 188, 156, 1) 100%
-  );
-  background: -o-linear-gradient(
-    45deg,
-    rgba(73, 155, 234, 1) 0%,
-    rgba(26, 188, 156, 1) 100%
-  );
-  background: -ms-linear-gradient(
-    45deg,
-    rgba(73, 155, 234, 1) 0%,
-    rgba(26, 188, 156, 1) 100%
-  );
-  background: linear-gradient(
-    45deg,
-    rgba(73, 155, 234, 1) 0%,
-    rgba(26, 188, 156, 1) 100%
-  );
+  background: -webkit-linear-gradient(45deg, rgba(73, 155, 234, 1) 0%, rgba(26, 188, 156, 1) 100%);
+  background: -o-linear-gradient(45deg, rgba(73, 155, 234, 1) 0%, rgba(26, 188, 156, 1) 100%);
+  background: -ms-linear-gradient(45deg, rgba(73, 155, 234, 1) 0%, rgba(26, 188, 156, 1) 100%);
+  background: linear-gradient(45deg, rgba(73, 155, 234, 1) 0%, rgba(26, 188, 156, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#1abc9c', GradientType=1 );
 }
 
@@ -484,8 +459,7 @@
 }
 
 .btn-shiny {
-  box-shadow: 0px 0px 5rem 0px #0ff0fc, 0px 0px 4rem 0px #00fec3,
-    0px 0px 3rem 0px #d6ff00;
+  box-shadow: 0px 0px 5rem 0px #0ff0fc, 0px 0px 4rem 0px #00fec3, 0px 0px 3rem 0px #d6ff00;
 }
 
 .btn-mini {
@@ -511,11 +485,7 @@
 .btn {
   width: 100px;
   height: 50px;
-  background: linear-gradient(
-    45deg,
-    rgba(73, 155, 234, 1) 0%,
-    rgba(26, 188, 156, 1) 100%
-  );
+  background: linear-gradient(45deg, rgba(73, 155, 234, 1) 0%, rgba(26, 188, 156, 1) 100%);
   filter: hue-rotate(0deg);
   border-radius: calc(50px / 2);
   overflow: hidden;
@@ -524,11 +494,7 @@
 }
 
 .btn > * {
-  background: linear-gradient(
-    45deg,
-    rgba(73, 155, 234, 1) 0%,
-    rgba(26, 188, 156, 1) 100%
-  );
+  background: linear-gradient(45deg, rgba(73, 155, 234, 1) 0%, rgba(26, 188, 156, 1) 100%);
 }
 
 .btn .ripple.ripple--dark {
@@ -599,11 +565,7 @@
 }
 
 .btn--checked .toggle.toggle--dark {
-  background: linear-gradient(
-    45deg,
-    rgba(73, 155, 234, 1) 0%,
-    rgba(26, 188, 156, 1) 100%
-  );
+  background: linear-gradient(45deg, rgba(73, 155, 234, 1) 0%, rgba(26, 188, 156, 1) 100%);
   filter: hue-rotate(-135deg);
 }
 
@@ -704,7 +666,7 @@
 .cogWheel {
   width: 5vmin;
   height: 5vmin;
-  background-image: url(./images/cog.svg);
+  background-image: url(../assets/images/cog.svg);
   background-repeat: no-repeat;
   background-size: contain;
   position: fixed;
