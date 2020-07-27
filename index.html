@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <title>Space Runner</title>
   <meta name='referrer' content='strict-origin'></meta>
-  <link rel='shortcut icon prefetch' as='image' href='./images/favicon.ico' type='image/x-icon' />
-  <link rel='preload' as='font' href='./fonts/BungeeOutline-Regular.ttf' type='font/ttf' crossOrigin='anonymous'></link>
-  <link rel='preload' href='./essential.css' as='style' />
-  <link rel='stylesheet' href='./essential.css' />
-  <link rel="stylesheet" href="./style.css" />
-  <script src="./script.js " defer></script>
+  <link rel='shortcut icon prefetch' as='image' href='./dist/assets/images/favicon.ico' type='image/x-icon' />
+  <link rel='preload' as='font' href='./dist/assets/fonts/BungeeOutline-Regular.ttf' type='font/ttf' crossOrigin='anonymous'></link>
+  <link rel='preload' href='./dist/styles/essential.css' as='style' />
+  <link rel='stylesheet' href='./dist/styles/essential.css' />
+  <link rel="stylesheet" href="./dist/styles/style.css" />
+  <script type='module' src="./dist/game.js "></script>
 </head>
 
 <body>
@@ -41,12 +41,12 @@
       <div id="character"></div>
     </section>
 
-    <section class="overlay">
+    <section class="overlay" id="overlay">
       <div class="userIntro">
-        <h2 class="greet">Ready, Steady, SWOOOSH!</h2></span></h2>
-        <h2 class="gameOverText hidden">GAME OVER!</h2>
+        <h2 id="greet">Ready, Steady, SWOOOSH!</h2></span></h2>
+        <h2 id="gameOverText" class="hidden">GAME OVER!</h2>
       </div>
-      <div class="lastscore hidden">
+      <div class="lastscore hidden" id="c_lastscore">
         <span>You scored</span>
         <span id="lastScore"></span>
         <span>points!</span>
@@ -68,7 +68,7 @@
           <div class="authorInfo">
             <div class="author">
               <span>Created By</span>
-              <div class="authorName">
+              <div id="authorName">
                 <span>T</span>
                 <span>U</span>
                 <span>S</span>
@@ -100,10 +100,10 @@
             <div class="ripple ripple--light"></div>
 
             <div class="toggle toggle--dark">
-              <img src="./images/mute.svg" />
+              <img src="./dist/assets/images/mute.svg" />
             </div>
             <div class="toggle toggle--light">
-              <img src="./images/sound.svg" />
+              <img src="./dist/assets/images/sound.svg" />
             </div>
           </button>
           <button type="button" class="spaceBtn btn-mini" id="resetScores">Reset Scores</button>
