@@ -1,14 +1,18 @@
 import { $, getStyle, getTranslateX } from "./util";
-import { pipeColorPalette } from "./constants";
+import { pipeColorPalette, headerHeight } from "./constants";
 
 export default class Obstacles {
   obstacles: NodeListOf<HTMLElement>;
+  holes: NodeListOf<HTMLElement>;
   width: number;
   _score!: number;
+  currentScore: HTMLElement;
 
   constructor(selector: string) {
     this.obstacles = $(selector) as NodeListOf<HTMLElement>;
+    this.holes = $(".hole") as NodeListOf<HTMLElement>;
     this.width = getStyle(this.obstacles[0], "width");
+    this.currentScore = $("#cScore") as HTMLElement;
   }
 
   get score(): number {
@@ -19,13 +23,13 @@ export default class Obstacles {
     this._score = s;
   }
 
-  createHoles(csEl: HTMLElement): void {
+  createHoles(): void {
     this.obstacles.forEach((o) => {
       this.randomHoleFn(o);
 
       o.addEventListener("animationiteration", () => {
         this.randomHoleFn(o);
-        this.updateScore(csEl);
+        this.updateScore();
       });
     });
   }
@@ -48,9 +52,9 @@ export default class Obstacles {
     pipe.style.backgroundImage = backgroundVal;
   }
 
-  updateScore(csEl: HTMLElement): void {
+  updateScore(): void {
     this.score += 10;
-    csEl.innerText = this.score.toString();
+    this.currentScore.innerText = this.score.toString();
   }
 
   resetPosition(): void {
@@ -62,6 +66,7 @@ export default class Obstacles {
   }
 
   pause(): void {
+    this.currentScore.innerText = "0";
     this.obstacles.forEach((o) => {
       const pipeLeft = getTranslateX(o) + 3;
       o.classList.remove("moving");
@@ -73,5 +78,13 @@ export default class Obstacles {
     this.obstacles.forEach((o) => {
       o.classList.add("moving");
     });
+  }
+
+  getLeftOf(index: number): number {
+    return getTranslateX(this.obstacles[index]);
+  }
+
+  getHoleTop(index: number, screenHeight: number): number {
+    return screenHeight + headerHeight + getStyle(this.holes[index], "top");
   }
 }

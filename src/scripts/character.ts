@@ -24,7 +24,11 @@ export default class Character {
     this.screenHeight = screenHeight;
     this.jumpHandler = this.jump.bind(this);
     this.jumpOnKeypressHandler = this.jumpOnKeypress.bind(this);
+  }
 
+  enableJumping(): void {
+    // Reset character's position to top
+    this.player.style.top = `${headerHeight}px`;
     // Jump character on mouse click or SPACEBAR press
     document.addEventListener("click", this.jumpHandler);
     document.addEventListener("keyup", this.jumpOnKeypressHandler);
