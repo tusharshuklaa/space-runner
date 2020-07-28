@@ -19,8 +19,13 @@
 body {
   font-size: 14px;
   overflow: hidden;
-  background: #000 url(../assets/images/bg.jpg);
   font-family: "Press Start 2p", monospace;
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 10px;
+  }
 }
 
 button {

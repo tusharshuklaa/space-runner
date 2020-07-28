@@ -1,5 +1,5 @@
-import { $, getStyle } from "./util";
-import { headerHeight } from "./constants";
+import { $, getStyle } from "./Util";
+import { headerHeight } from "./Constants";
 
 export default class Character {
   player: HTMLElement;
@@ -24,7 +24,11 @@ export default class Character {
     this.screenHeight = screenHeight;
     this.jumpHandler = this.jump.bind(this);
     this.jumpOnKeypressHandler = this.jumpOnKeypress.bind(this);
+  }
 
+  enableJumping(): void {
+    // Reset character's position to top
+    this.player.style.top = `${headerHeight}px`;
     // Jump character on mouse click or SPACEBAR press
     document.addEventListener("click", this.jumpHandler);
     document.addEventListener("keyup", this.jumpOnKeypressHandler);
@@ -83,8 +87,10 @@ export default class Character {
     // When top of character exceeds the screenHeight - characterHeight, bottom is reached
     const characterHitsBottom = characterTop > screenHeight - this.height;
     // Pipe's left is > character's right and pipe's right is less than character's left.
-    const pipe1InCharacterZone = obstacle.pipe1Left < characterZone && obstacle.pipe1Left > obstacleCleared;
-    const pipe2InCharacterZone = obstacle.pipe2Left < characterZone && obstacle.pipe2Left > obstacleCleared;
+    const pipe1InCharacterZone =
+      obstacle.pipe1Left < characterZone && obstacle.pipe1Left > obstacleCleared;
+    const pipe2InCharacterZone =
+      obstacle.pipe2Left < characterZone && obstacle.pipe2Left > obstacleCleared;
     // Character's top is less than hole's top or more than hole's bottom (complex bcz hole's top is negative)
     const characterHitsHole1 =
       characterTop < obstacle.hole1Top || characterTop > obstacle.hole1Top + clearPassageHeight;

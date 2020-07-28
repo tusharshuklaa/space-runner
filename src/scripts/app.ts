@@ -1,38 +1,35 @@
-import Sound from "./sound";
-import { $, getStyle, getTranslateX, getReadableDate, getSortedScore } from "./util";
-import { headerHeight, __LEADERBOARD_KEY__, __MUSIC_PREF_KEY__ } from "./constants";
-import Obstacles from "./obstacles";
-import Character from "./character";
+import Sound from "./Sound";
+import { $ } from "./Util";
+import { __MUSIC_PREF_KEY__ } from "./Constants";
+import Obstacles from "./Obstacles";
+import Character from "./Character";
+import Score from "./Score";
+import AddStars from "./StarryBg";
 
-const holes = $(".hole") as NodeListOf<HTMLElement>;
-const obstacles = $(".obstacle") as NodeListOf<HTMLElement>;
-const character = $("#character") as HTMLElement;
 const playBtn = $("#startGameBtn") as HTMLElement;
 const overlay = $("#overlay") as HTMLElement;
-const topScoreElem = $("#tScore") as HTMLElement;
-const currentScore = $("#cScore") as HTMLElement;
-const lastScore = $("#lastScore") as HTMLElement;
-const leaderboard = $("#leaderboard") as HTMLElement;
 const musicBtn = $("#toggleMusic") as HTMLElement;
-const resetScores = $("#resetScores") as HTMLElement;
 const settingsButton = $("#toggleSettings") as HTMLElement;
+const canvasEl = $("#starry") as HTMLCanvasElement;
 
 let screenHeight = 500;
-let lowestScore = 0;
-let topScores: Array<ITopScore> = [];
 let isMusicOn = true;
 
 const bgMusic = new Sound("./dist/assets/audio/bgMusic.ogg");
 const obsts = new Obstacles(".obstacle");
+const scoreSystem = new Score();
 let player: Character;
 
 const init = () => {
+  const resetScores = $("#resetScores") as HTMLElement;
+
+  AddStars(canvasEl);
   fetchMusicPreference();
-  updateLeaderboard();
+  scoreSystem.updateLeaderboard();
   screenHeight = document.documentElement.clientHeight;
   player = new Character("#character", obsts.width, screenHeight);
   // Create random holes in pipes
-  obsts.createHoles(currentScore);
+  obsts.createHoles();
 
   // Play button click handler
   playBtn.addEventListener("click", startGame);
@@ -41,10 +38,9 @@ const init = () => {
   musicBtn.addEventListener("click", setMusicPreference);
 
   // Reset scores listener
-  resetScores.addEventListener("click", resetLeaderBoardScores);
-
-  // Settings button event listener
-  settingsButton.addEventListener("click", toggleSettings);
+  resetScores.addEventListener("click", () => {
+    scoreSystem.resetLeaderBoard();
+  });
 
   // Settings button event listener
   settingsButton.addEventListener("click", toggleSettings);
@@ -106,43 +102,6 @@ const setMusicPreference = () => {
   localStorage.setItem(__MUSIC_PREF_KEY__, musicPrefVal);
 };
 
-const resetLeaderBoardScores = () => {
-  localStorage.removeItem(__LEADERBOARD_KEY__);
-  topScores = [];
-  setTimeout(() => {
-    updateLeaderboard();
-  }, 100);
-};
-
-const updateLeaderboard = () => {
-  const scores: Array<ITopScore> =
-    topScores && topScores.length
-      ? topScores
-      : (JSON.parse(localStorage.getItem(__LEADERBOARD_KEY__) || "[]") as Array<ITopScore>);
-
-  if (scores.length) {
-    // Sorting array in descending order
-    topScores = getSortedScore(scores);
-    topScoreElem.innerText = `${Object.values(topScores[0])[0]}`;
-    lowestScore = Object.values(topScores[topScores.length - 1])[0];
-
-    const listItems = topScores.reduce((acc, _score) => {
-      const timestamp = Number(Object.keys(_score)[0]);
-      const scoreVal = _score[timestamp];
-      let date = getReadableDate(timestamp);
-      date = date.padStart(50 - (`${scoreVal}`.length + date.length), ".");
-      acc = acc + `<li class="lbScore"><span>${scoreVal}</span>${date}</li>`;
-      return acc;
-    }, "");
-
-    leaderboard.innerHTML = listItems;
-  } else {
-    leaderboard.innerHTML = "";
-    topScoreElem.innerText = "";
-    lowestScore = 0;
-  }
-};
-
 const playBgMusic = () => {
   if (isMusicOn) {
     bgMusic.loopOn();
@@ -155,8 +114,8 @@ const startGame = () => {
   obsts.resetPosition();
   // Play background music in loop
   playBgMusic();
-  // Reset character's position to top
-  character.style.top = `${headerHeight}px`;
+  // Enable player jumping controls
+  player.enableJumping();
   // Remove overlay
   overlay.classList.add("hidden");
   player.initiateGravity(screenHeight, hitDetection);
@@ -167,29 +126,14 @@ const startGame = () => {
 const hitDetection = (gravity: number) => {
   if (
     player.isHit(screenHeight, {
-      pipe1Left: getTranslateX(obstacles[0]),
-      pipe2Left: getTranslateX(obstacles[1]),
-      hole1Top: screenHeight + headerHeight + getStyle(holes[0], "top"),
-      hole2Top: screenHeight + headerHeight + getStyle(holes[1], "top"),
+      pipe1Left: obsts.getLeftOf(0),
+      pipe2Left: obsts.getLeftOf(1),
+      hole1Top: obsts.getHoleTop(0, screenHeight),
+      hole2Top: obsts.getHoleTop(1, screenHeight),
     })
   ) {
     clearInterval(gravity);
     gameOver();
-  }
-};
-
-const storeScore = () => {
-  const score = obsts.score;
-  if (!isNaN(score) && (topScores.length < 5 || (score > lowestScore && lowestScore !== 0)) && score !== 0) {
-    const scoreObj: ITopScore = {
-      [`${Date.now()}`]: score,
-    };
-    topScores.push(scoreObj);
-    const sortedScores = getSortedScore(topScores);
-    // Keeping only top 5 scores
-    topScores = sortedScores.slice(0, 5);
-    localStorage.setItem(__LEADERBOARD_KEY__, JSON.stringify(topScores));
-    updateLeaderboard();
   }
 };
 
@@ -203,6 +147,8 @@ const showGameOverInfo = () => {
 };
 
 const gameOver = () => {
+  const lastScore = $("#lastScore") as HTMLElement;
+
   player.stopJumping();
   player.destroyJumping();
 
@@ -213,9 +159,8 @@ const gameOver = () => {
     hitSound.play();
   }
 
-  storeScore();
+  scoreSystem.save(obsts.score);
   showGameOverInfo();
-  currentScore.innerText = "0";
   lastScore.innerText = `${obsts.score}`;
   overlay.classList.remove("hidden");
   lastScore.classList.add("highlight");
@@ -229,5 +174,7 @@ const gameOver = () => {
   playBtn.innerText = "Play Again";
 };
 
-// Initialize the game!
-init();
+document.addEventListener("DOMContentLoaded", function () {
+  // Initialize the game!
+  init();
+});
