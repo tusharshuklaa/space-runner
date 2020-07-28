@@ -9,7 +9,7 @@
 `CLICK anywhere` on the page **OR** press `SPACEBAR` to make the character (_spaceship with a little alien_) jump.
 
 <center style="text-align: center">
-<img alt="Space Runner" style="margin: auto;" src="./images/ufo.svg" width="250"/>
+<img alt="Space Runner" style="margin: auto;" src="./dist/assets/images/ufo.svg" width="250"/>
 </center>
 
 Dodge the random space obstacles and pass through the visible openings. The more debris you pass through, the more you will score. You earn `10 points` for clearing one obstacle.
@@ -34,13 +34,6 @@ Currently the game is not optimized to be played on mobile (haven't tested for t
 ### Screenshot
 
 [![Space Runner Screenshot](https://i.imgur.com/2o2oKfhr.png "Space Runner")](https://tusharshuklaa.github.io/space-runner/ "Play Space Runner Online")
-
-## TODOs
-
-* Optimize for mobile devices
-* Raise difficulty of the game as the user progresses int he game
-* Make it a PWA
-* Add CodeTour
 
 ## Built With
 

@@ -1,16 +1,4 @@
 /* #region Animations */
-/* @keyframes standOut {
-  0% {
-    text-shadow: 0px 0px 0.01rem;
-    transform: scale(2.5);
-  }
-
-  100% {
-    text-shadow: 0px 0px 0.1rem rgb(0, 238, 255);
-    transform: scale(1);
-  }
-} */
-
 @keyframes standOut {
   from {
     transform: translateY(0);
@@ -100,7 +88,7 @@
   }
 
   100% {
-    font-size: 6.5vmin;
+    font-size: 5vmin;
     letter-spacing: 0.5vw;
   }
 }
@@ -221,7 +209,7 @@
 
 .title {
   margin: 0;
-  font-size: 6.5vmin;
+  font-size: 5vmin;
   font-family: "Bungee Outline", cursive;
   letter-spacing: 0.5vmin;
   animation: shrink 6s linear;
@@ -411,7 +399,7 @@
 
 .lbScore {
   font-size: 1.5vmin;
-  margin: 1vmin;
+  margin: 2vmin 1vmin;
   color: #0ff0fc;
 }
 
@@ -422,9 +410,9 @@
 
 .spaceBtn {
   display: inline-block;
-  font-size: 4vmin;
-  margin: 1.5vmin;
-  padding: 1.5vmin 2vmin;
+  font-size: 2.5vmin;
+  margin: 5vmin;
+  padding: 1.5vmin 3vmin;
   transition: all 0.5s;
   filter: hue-rotate(0deg);
   color: #fff;
@@ -464,6 +452,7 @@
 
 .btn-mini {
   font-size: 0.8rem;
+  margin: 0;
 }
 
 .settings {
@@ -491,6 +480,12 @@
   overflow: hidden;
   -webkit-animation: changeColor2 0.6s ease forwards;
   animation: changeColor2 0.6s ease forwards;
+}
+
+@media (max-width: 767px) {
+  .btn {
+    transform: scale(0.8) translateX(-10px);
+  }
 }
 
 .btn > * {
@@ -603,7 +598,7 @@
 }
 
 .howToPlay {
-  line-height: 3rem;
+  line-height: 2.5rem;
 }
 
 .howToPlay > code {
@@ -619,11 +614,18 @@
   line-height: 1.5rem;
 }
 
+@media (max-width: 767px) {
+  .howToPlay {
+    line-height: 1.2rem;
+  }
+}
+
 .authorInfo {
   text-transform: uppercase;
 }
 
 .info {
+  width: 100%;
   text-align: center;
   padding: 4vw;
   line-height: 1.5rem;
@@ -644,6 +646,17 @@
   font-size: 2rem;
 }
 
+@media (max-width: 767px) {
+  .gameInstructions {
+    width: 90%;
+  }
+
+  .gameInstructions h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
 .settingsModal {
   position: fixed;
   top: 0;
@@ -654,13 +667,19 @@
   width: 80vw;
   height: 80vh;
   overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(250, 250, 250, 0.9);
   padding: 0.4rem;
   color: darkslateblue;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+}
+
+@media (max-width: 767px) {
+  .settingsModal {
+    width: 90vw;
+  }
 }
 
 .cogWheel {
@@ -690,7 +709,7 @@
   text-decoration-style: dotted;
 }
 
-.authorName {
+#authorName {
   font-size: 3rem;
   margin: 1rem 0;
   font-family: "Bungee Outline", cursive;
@@ -701,76 +720,86 @@
   margin-bottom: 0;
 }
 
-.authorName.animatedText span {
+@media (max-width: 767px) {
+  #authorName {
+    font-size: 2rem;
+    line-height: 0.9;
+  }
+
+  #authorName span:nth-child(7) {
+    display: block !important;
+  }
+}
+
+#authorName.animatedText span {
   animation: standOut 0.5s 0s linear;
   display: inline-block;
   animation-duration: 0.3s;
-  animation-name: standOut;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
 
-.authorName.animatedText :nth-child(13n + 0) {
+#authorName.animatedText :nth-child(13n + 0) {
   animation-delay: -0.6s;
   color: #640a64;
 }
 
-.authorName.animatedText :nth-child(13n + 1) {
+#authorName.animatedText :nth-child(13n + 1) {
   animation-delay: -0.5538461538s;
   color: #780a8c;
 }
 
-.authorName.animatedText :nth-child(13n + 2) {
+#authorName.animatedText :nth-child(13n + 2) {
   animation-delay: -0.5076923077s;
   color: #8c0a7d;
 }
 
-.authorName.animatedText :nth-child(13n + 3) {
+#authorName.animatedText :nth-child(13n + 3) {
   animation-delay: -0.4615384615s;
   color: #a00a6e;
 }
 
-.authorName.animatedText :nth-child(13n + 4) {
+#authorName.animatedText :nth-child(13n + 4) {
   animation-delay: -0.4153846154s;
   color: #b40a96;
 }
 
-.authorName.animatedText :nth-child(13n + 5) {
+#authorName.animatedText :nth-child(13n + 5) {
   animation-delay: -0.3692307692s;
   color: #c80a87;
 }
 
-.authorName.animatedText :nth-child(13n + 6) {
+#authorName.animatedText :nth-child(13n + 6) {
   animation-delay: -0.3230769231s;
   color: #dc0a78;
 }
 
-.authorName.animatedText :nth-child(13n + 7) {
+#authorName.animatedText :nth-child(13n + 7) {
   animation-delay: -0.2769230769s;
   color: #f00a69;
 }
 
-.authorName.animatedText :nth-child(13n + 8) {
+#authorName.animatedText :nth-child(13n + 8) {
   animation-delay: -0.2307692308s;
   color: #690a91;
 }
 
-.authorName.animatedText :nth-child(13n + 9) {
+#authorName.animatedText :nth-child(13n + 9) {
   animation-delay: -0.1846153846s;
   color: #7d0a82;
 }
 
-.authorName.animatedText :nth-child(13n + 10) {
+#authorName.animatedText :nth-child(13n + 10) {
   animation-delay: -0.1384615385s;
   color: #910a73;
 }
 
-.authorName.animatedText :nth-child(13n + 11) {
+#authorName.animatedText :nth-child(13n + 11) {
   animation-delay: -0.0923076923s;
   color: #a50a64;
 }
 
-.authorName.animatedText :nth-child(13n + 12) {
+#authorName.animatedText :nth-child(13n + 12) {
   animation-delay: -0.0461538462s;
   color: #b90a8c;
 }
@@ -791,6 +820,14 @@
   text-decoration: none;
 }
 
+@media (max-width: 767px) {
+  .ciItem {
+    margin: 0.4rem 0.2rem;
+    font-size: 0.45rem;
+    padding: 0.1rem 0.3rem;
+  }
+}
+
 .lastscore {
   display: flex;
   align-items: center;
@@ -806,4 +843,11 @@
 
 .lastscore > span.highlight {
   animation: zoomInside 3s ease-in-out;
+}
+
+#starry {
+  position: fixed;
+  width: 100%;
+  height: auto;
+  z-index: -1;
 }

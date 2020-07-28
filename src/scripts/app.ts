@@ -4,11 +4,13 @@ import { __MUSIC_PREF_KEY__ } from "./Constants";
 import Obstacles from "./Obstacles";
 import Character from "./Character";
 import Score from "./Score";
+import AddStars from "./StarryBg";
 
 const playBtn = $("#startGameBtn") as HTMLElement;
 const overlay = $("#overlay") as HTMLElement;
 const musicBtn = $("#toggleMusic") as HTMLElement;
 const settingsButton = $("#toggleSettings") as HTMLElement;
+const canvasEl = $("#starry") as HTMLCanvasElement;
 
 let screenHeight = 500;
 let isMusicOn = true;
@@ -21,6 +23,7 @@ let player: Character;
 const init = () => {
   const resetScores = $("#resetScores") as HTMLElement;
 
+  AddStars(canvasEl);
   fetchMusicPreference();
   scoreSystem.updateLeaderboard();
   screenHeight = document.documentElement.clientHeight;
@@ -171,5 +174,7 @@ const gameOver = () => {
   playBtn.innerText = "Play Again";
 };
 
-// Initialize the game!
-init();
+document.addEventListener("DOMContentLoaded", function () {
+  // Initialize the game!
+  init();
+});

@@ -15,3 +15,12 @@ export const pipeColorPalette = [
   "#dfff11", // lime
   "#bf00ff", // purple
 ];
+
+export const starColors = [
+  // ...pipeColorPalette,
+  "#A751CC",
+  "#DE9AF9",
+  "#F9E0F9",
+  "#B5ECFB",
+  "#5F86F7",
+];
