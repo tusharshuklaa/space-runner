@@ -1,8 +1,8 @@
-import Sound from "./sound";
-import { $ } from "./util";
-import { __MUSIC_PREF_KEY__ } from "./constants";
-import Obstacles from "./obstacles";
-import Character from "./character";
+import Sound from "./Sound";
+import { $ } from "./Util";
+import { __MUSIC_PREF_KEY__ } from "./Constants";
+import Obstacles from "./Obstacles";
+import Character from "./Character";
 import Score from "./Score";
 
 const playBtn = $("#startGameBtn") as HTMLElement;

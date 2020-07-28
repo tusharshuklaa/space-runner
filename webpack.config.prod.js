@@ -3,7 +3,7 @@ const CleanPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   mode: "production",
-  entry: "./src/scripts/app.ts",
+  entry: "./src/scripts/App.ts",
   output: {
     // This tells webpack to automatically add hash to help with caching after every build
     filename: "game.js",
