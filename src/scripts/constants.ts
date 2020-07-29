@@ -16,11 +16,4 @@ export const pipeColorPalette = [
   "#bf00ff", // purple
 ];
 
-export const starColors = [
-  // ...pipeColorPalette,
-  "#A751CC",
-  "#DE9AF9",
-  "#F9E0F9",
-  "#B5ECFB",
-  "#5F86F7",
-];
+export const starColors = ["#A751CC", "#DE9AF9", "#F9E0F9", "#B5ECFB", "#5F86F7"];

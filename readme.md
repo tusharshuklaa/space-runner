@@ -6,7 +6,7 @@
 
 ## How to play
 
-`CLICK anywhere` on the page **OR** press `SPACEBAR` to make the character (_spaceship with a little alien_) jump.
+`CLICK anywhere` on the page **OR** press `SPACEBAR` | `Arrow-Up` | `w` to make the character (_spaceship with a little alien_) jump.
 
 <center style="text-align: center">
 <img alt="Space Runner" style="margin: auto;" src="./dist/assets/images/ufo.svg" width="250"/>
@@ -29,7 +29,7 @@ The game is temporarily hosted on github and can be played [here](https://tushar
 
 ### Supported Devices for playing
 
-Currently the game is not optimized to be played on mobile (haven't tested for tablet) and is only good for Desktop/Laptop. However the optimization is under development and soon would be available.
+Currently the game is not much optimized to be played on mobile (haven't tested for tablet) and is only good for Desktop/Laptop. However the optimization is under development and soon would be available.
 
 ### Screenshot
 
