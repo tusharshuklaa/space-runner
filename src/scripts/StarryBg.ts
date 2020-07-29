@@ -26,26 +26,10 @@ export default function AddStars(canvasEl: HTMLCanvasElement): void {
     }
   };
 
-  let opacity = 1;
-  let speed = 0.0005;
-  let time = 0;
-
-  const spinSpeed = (desiredSpeed: number) => {
-    speed += (desiredSpeed - speed) * 0.01;
-    time += speed;
-    return time;
-  };
-
-  const starOpacity = (desiredOpacity: number, ease: number) => {
-    opacity += (desiredOpacity - opacity) * ease;
-    return (c.fillStyle = `rgba(18, 18, 18, ${opacity})`);
-  };
-
   const renderStars = () => {
     c.save();
 
-    starOpacity(1, 0.01);
-    spinSpeed(0.001);
+    c.fillStyle = `rgba(18, 18, 18, 1)`;
 
     c.fillRect(0, 0, canvas.width, canvas.height);
     c.translate(canvas.width / 2, canvas.height / 2);
@@ -53,8 +37,6 @@ export default function AddStars(canvasEl: HTMLCanvasElement): void {
     for (let i = 0; i < stars.length; i++) {
       stars[i].update();
     }
-
-    c.restore();
   };
 
   const init = () => {

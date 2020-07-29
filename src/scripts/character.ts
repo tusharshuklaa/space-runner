@@ -65,7 +65,7 @@ export default class Character {
   }
 
   jumpOnKeypress(e: KeyboardEvent): void {
-    if (e.key === " ") {
+    if (e.key === " " || e.key === "ArrowUp" || e.key === "w") {
       this.jump();
     }
   }
