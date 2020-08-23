@@ -1,5 +1,5 @@
 import Star from "./Stars";
-import { starColors } from "./Constants";
+import { starColors } from "./constants";
 
 export default function AddStars(canvasEl: HTMLCanvasElement): void {
   const canvas = canvasEl;

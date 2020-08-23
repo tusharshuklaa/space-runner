@@ -1,5 +1,5 @@
-import { $, getStyle, getTranslateX } from "./Util";
-import { pipeColorPalette, headerHeight } from "./Constants";
+import { $, getStyle, getTranslateX } from "./util";
+import { pipeColorPalette, headerHeight } from "./constants";
 
 export default class Obstacles {
   obstacles: NodeListOf<HTMLElement>;

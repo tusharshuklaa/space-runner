@@ -1,5 +1,5 @@
-import { $, getStyle } from "./Util";
-import { headerHeight } from "./Constants";
+import { $, getStyle } from "./util";
+import { headerHeight } from "./constants";
 
 export default class Character {
   player: HTMLElement;

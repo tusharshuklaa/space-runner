@@ -5,7 +5,7 @@
   "main": "./dist/game.js",
   "scripts": {
     "dev": "webpack-dev-server",
-    "pretty": "prettier --config .prettierrc.json './src/**/*.ts' --write",
+    "pretty": "prettier --config .prettierrc.json \"./src/**/*.ts\" --write",
     "lint": "eslint \"./src/**/*.ts\" --fix",
     "quality": "yarn lint && yarn pretty",
     "build": "webpack",
@@ -19,7 +19,7 @@
     "javascript-game",
     "flappy",
     "bird",
-    "flapp-bird"
+    "flappy-bird"
   ],
   "author": "Tushar Shukla",
   "license": "ISC",

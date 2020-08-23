@@ -1,5 +1,5 @@
-import { $, getReadableDate, getSortedScore } from "./Util";
-import { __LEADERBOARD_KEY__ } from "./Constants";
+import { $, getReadableDate, getSortedScore } from "./util";
+import { __LEADERBOARD_KEY__ } from "./constants";
 
 export default class Score {
   private topScores: Array<ITopScore>;
