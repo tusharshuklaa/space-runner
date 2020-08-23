@@ -52,3 +52,7 @@ button:active {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
+
+ol:empty {
+  display: none;
+}
